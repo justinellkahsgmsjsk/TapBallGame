@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 122 39% 49%;
+    --foreground: 0 0% 100%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -17,79 +13,55 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 74 100% 46%;
+    --primary-foreground: 124 61% 20%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 122 41% 29%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 122 30% 40%;
+    --muted-foreground: 0 0% 80%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 74 100% 46%;
+    --accent-foreground: 124 61% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 74 100% 46%;
 
     --radius: 0.5rem;
 
+    /* Game tokens */
+    --game-green-light: 122 39% 49%;
+    --game-green-dark: 124 61% 33%;
+    --game-accent: 74 100% 46%;
+    --game-accent-glow: 74 100% 46% / 0.6;
+    --game-text: 0 0% 100%;
+    --game-shadow: 0 0% 0% / 0.4;
+    --game-urgent: 0 100% 66%;
+
+    --gradient-arena: linear-gradient(135deg, hsl(var(--game-green-light)), hsl(var(--game-green-dark)));
+    --gradient-hud: linear-gradient(180deg, hsl(0 0% 0% / 0.35) 0%, transparent 100%);
+    --gradient-ball: radial-gradient(circle at 35% 35%, #fff 0%, #c8e6c9 15%, #66BB6A 45%, #2E7D32 100%);
+
+    --shadow-ball:
+      0 0 0 4px hsl(0 0% 100% / 0.25),
+      0 0 28px hsl(var(--game-accent-glow)),
+      0 8px 32px hsl(0 0% 0% / 0.5),
+      inset 0 -6px 12px hsl(0 0% 0% / 0.25);
+    --shadow-cta: 0 0 32px hsl(var(--game-accent-glow)), 0 4px 16px hsl(0 0% 0% / 0.4);
+    --shadow-cta-hover: 0 0 48px hsl(74 100% 46% / 0.75), 0 6px 20px hsl(0 0% 0% / 0.5);
+
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -101,5 +73,97 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Share Tech Mono', monospace;
+    background: var(--gradient-arena);
+    min-height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
   }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 100% / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .ball {
+    background: var(--gradient-ball);
+    box-shadow: var(--shadow-ball);
+    transition: left 0.18s cubic-bezier(.4,1.6,.6,1), top 0.18s cubic-bezier(.4,1.6,.6,1);
+    will-change: left, top;
+  }
+
+  .ball:hover {
+    filter: brightness(1.15);
+  }
+
+  .ball.tapped {
+    animation: pop 0.22s ease-out;
+  }
+
+  .ripple {
+    background: hsl(var(--game-accent) / 0.45);
+    animation: rippleOut 0.5s ease-out forwards;
+  }
+
+  .plus1 {
+    font-family: 'Orbitron', sans-serif;
+    color: hsl(var(--game-accent));
+    text-shadow: 0 0 10px hsl(var(--game-accent-glow));
+    animation: floatUp 0.7s ease-out forwards;
+  }
+
+  .start-btn {
+    background: hsl(var(--game-accent));
+    color: hsl(124 61% 20%);
+    box-shadow: var(--shadow-cta);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .start-btn:hover {
+    transform: scale(1.06);
+    box-shadow: var(--shadow-cta-hover);
+  }
+
+  .start-btn:active {
+    transform: scale(0.97);
+  }
+
+  .timer-urgent {
+    color: hsl(var(--game-urgent));
+    animation: blink 0.5s step-end infinite;
+  }
+}
+
+@keyframes pop {
+  0%   { transform: translate(-50%,-50%) scale(1); }
+  40%  { transform: translate(-50%,-50%) scale(1.38); filter: brightness(1.4); }
+  100% { transform: translate(-50%,-50%) scale(1); }
+}
+
+@keyframes rippleOut {
+  from { width: 72px; height: 72px; opacity: 1; }
+  to   { width: 180px; height: 180px; opacity: 0; }
+}
+
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -160%); }
+}
+
+@keyframes blink {
+  50% { opacity: 0.3; }
 }
