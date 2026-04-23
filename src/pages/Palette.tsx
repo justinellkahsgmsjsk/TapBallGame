@@ -11,6 +11,8 @@ const Palette = () => {
         "Generate beautiful color palettes with harmony modes. Lock colors, copy hex codes, export as CSS or JSON.",
       );
     }
+    document.body.classList.add("palette-route");
+    return () => document.body.classList.remove("palette-route");
   }, []);
 
   return <PaletteGenerator />;
