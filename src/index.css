@@ -87,6 +87,19 @@
     -webkit-user-select: none;
   }
 
+  body.palette-route {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: hsl(var(--palette-canvas));
+    color: hsl(var(--palette-ink));
+    overflow: auto;
+    user-select: auto;
+    -webkit-user-select: auto;
+  }
+
+  body.palette-route::before {
+    display: none;
+  }
+
   body::before {
     content: '';
     position: fixed;
