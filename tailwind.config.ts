@@ -57,6 +57,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        palette: {
+          canvas: "hsl(var(--palette-canvas))",
+          ink: "hsl(var(--palette-ink))",
+          rule: "hsl(var(--palette-rule))",
+          muted: "hsl(var(--palette-muted))",
+        },
+      },
+      fontFamily: {
+        serif: ['Fraunces', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', '"Share Tech Mono"', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
